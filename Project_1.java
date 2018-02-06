@@ -1,27 +1,57 @@
 package java_project_1;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Project_1 {
 	
-	public static void listFile(String directoryName)
+	//function for displaying files
+	
+	public static void listFile(String pathName1, String pathName2) throws IOException
 	{
-		File directory = new File(directoryName);
 		
-		//get all the files from directory
+		 // Creating Array List
+		
+		ArrayList<File> list = new ArrayList<File>();          
+		File directory = new File(pathName1);
 		File[] flist = directory.listFiles();
+		
+		
+		//get all the files
+		
 		for(File file:flist)
 		{
+			
 			if(file.isFile())
 			{
-				System.out.println("File Name : "+file.getName()+" File Path :"+file.getAbsolutePath());
+				list.add(file);
+				for(File f:list)
+				{
+					//display 
+					
+					System.out.println("File Name :"+f.getName()+ "   "+ "File Path : " +f);   
+					File file1 = new File(pathName2);
+					FileWriter fw = new FileWriter(pathName2,true);
+					fw.write("Name of file : "+ f.getName()+" , ");
+					fw.write("Path of the file: "+ f.getAbsolutePath());
+					fw.write(10);
+					fw.flush();
+					fw.close();
+					
+					
+				}
 				
 			}
+			
 			else if(file.isDirectory())
 			{
-				listFile(file.getAbsolutePath());
+				//recursion to get the file
+				
+				listFile(file.getAbsolutePath(),pathName2);
+				
 			}
+				
 		}
 		
 	}
@@ -31,23 +61,38 @@ public class Project_1 {
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the path : ");
 		String path= sc.nextLine();
-	
-		File file = new File(path); 
-		String directory = " ";
-		String cs_file = " ";
-		FileReader in = new FileReader(file);
-		int c;
-		while ((c=in.read())!=-10)
+		
+		File f1= new File(path);
+		FileReader fr= null;
+		
+		try
 		{
-			char ch= (char)c;
-			directory = directory + ch;
+			fr=new FileReader(f1);
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println(e);
 		}
 		
+		int c;
+		String p1=" ";
+		String p2=" ";
 		
+		while((c=fr.read())!=10)
+		{
+			p1=p1+(char)c;
+		}
 		
+		while((c=fr.read())!=-1)
+		{
+			p2=p2+(char)c;
+		}
+
+		//calling function to display files
 		
+		listFile(p1.substring(0, p1.length()-1),p2); 
 		
-		
+			
 		
 	}
 
