@@ -1,11 +1,10 @@
 package java_project_1;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Project_1 {
+	
 	public static void listFile(String directoryName)
 	{
 		File directory = new File(directoryName);
@@ -30,10 +29,22 @@ public class Project_1 {
 	public static void main(String args[]) throws IOException
 	{
 		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the path : ");
 		String path= sc.nextLine();
-		listFile(path);
-		//File file = new File(path); 
-		//FileWriter out = new FileWriter(file);
+	
+		File file = new File(path); 
+		String directory = " ";
+		String cs_file = " ";
+		FileReader in = new FileReader(file);
+		int c;
+		while ((c=in.read())!=-10)
+		{
+			char ch= (char)c;
+			directory = directory + ch;
+		}
+		
+		
+		
 		
 		
 		
