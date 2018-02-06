@@ -20,41 +20,42 @@ public class Project_1 {
 		
 		//get all the files
 		
-		for(File file:flist)
+		for(int i=0;i<flist.length;i++)
 		{
-			
+			File file=flist[i];
 			if(file.isFile())
 			{
 				list.add(file);
-				for(File f:list)
-				{
-					//display 
-					
-					System.out.println("File Name :"+f.getName()+ "   "+ "File Path : " +f);   
-					File file1 = new File(pathName2);
-					FileWriter fw = new FileWriter(pathName2,true);
-					fw.write("Name of file : "+ f.getName()+" , ");
-					fw.write("Path of the file: "+ f.getAbsolutePath());
-					fw.write(10);
-					fw.flush();
-					fw.close();
-					
-					
-				}
+			
+			for(File f:list)
+			{
+				//display 
+				
+				System.out.println("File Name :"+f.getName()+ "   "+ "File Path : " +f);   
+				File file1 = new File(pathName2);
+				FileWriter fw = new FileWriter(pathName2,true);
+				fw.write("Name of file : "+ f.getName()+" , ");
+				fw.write("Path of the file: "+ f.getAbsolutePath());
+				fw.write(10);
+				fw.flush();
+				fw.close();
+				
 				
 			}
-			
+			}
 			else if(file.isDirectory())
 			{
-				//recursion to get the file
 				
 				listFile(file.getAbsolutePath(),pathName2);
 				
 			}
+						
+		}
+		
 				
 		}
 		
-	}
+
 	
 	public static void main(String args[]) throws IOException
 	{
@@ -82,12 +83,12 @@ public class Project_1 {
 		{
 			p1=p1+(char)c;
 		}
-		
+		System.out.println(p1);
 		while((c=fr.read())!=-1)
 		{
 			p2=p2+(char)c;
 		}
-
+		System.out.println(p2);
 		//calling function to display files
 		
 		listFile(p1.substring(0, p1.length()-1),p2); 
