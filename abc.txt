@@ -1,3 +1,2 @@
-F:\Class1
-F:\Class2\src
-F:\Class1\src\doc.csv
+C:\Users\user\IdeaProjects\untitled
+C:\Users\user\IdeaProjects\untitled\src\document.csv
